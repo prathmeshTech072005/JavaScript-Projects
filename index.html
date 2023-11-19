@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count_Down_App</title>
+    <Style>
+        .main {
+            height: 100vh;
+            background-color: rgb(243, 161, 161);
+            background-image: url("nature.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        .cover {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(1, 1, 1, 0.5);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .text h1 {
+            color: white;
+            margin-top: 130px;
+            text-align: center;
+        }
+
+        .text h2 {
+            color: white;
+
+            text-align: center;
+
+        }
+
+        .block {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+
+
+
+        }
+
+        input {
+            text-align: center;
+            font-size: 33px;
+        }
+
+        .info {
+            width: 60px;
+            height: 55px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .day,
+        .hours,
+        .min,
+        .sec {
+            padding-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+        }
+    </Style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="cover">
+            <div class="text">
+                <h1>We are coming soon </h1>
+                <h2>Date : 20 March 2023 10:00 AM</h2>
+            </div>
+
+            <div class="block">
+                <div class="day">
+                    <input type="text" class="info" readonly value="0">
+                    day
+                </div>
+                <div class="hours">
+                    <input type="text" class="info" readonly value="0">
+                    hour
+                </div>
+                <div class="min">
+                    <input type="text" class="info" readonly value="0">
+                    min
+                </div>
+                <div class="sec">
+                    <input type="text" class="info" readonly value="0">
+                    seconds
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+  <script>
+    const end_date = "Sat Nov 18 2023 01:12 Pm"
+    const end = new Date(end_date);
+    document.querySelector("h2").textContent = end_date
+   
+   info =  document.querySelectorAll(".info")
+
+    function clock(){
+        const end = new Date(end_date);
+        const now  = new Date();
+        const diff = (end-now)/1000;
+       
+        info[0].value = Math.floor(diff / 3600 / 24);
+        info[1].value = Math.floor(diff / 3600) % 24;
+        info[2].value = Math.floor(diff / 60) % 60;
+        info[3].value = Math.floor(diff) % 60;
+
+
+        if(diff<0)
+        {
+            document.querySelector("h2").textContent ="Time is Over ok...! ";
+            document.querySelector("h1").textContent = " OK Bye You Miss the Chance..😢"
+            info.forEach(item => (item.value = 0));
+            return;
+        }
+ 
+  }
+    clock();   // this is calling of function ok 
+
+    setInterval(function(){
+        clock();
+    },1000)
+    
+  </script>
+</html>
